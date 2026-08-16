@@ -16,7 +16,8 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node dist/index.js",
-    "smoke": "node scripts/smoke-test.mjs"
+    "smoke": "node scripts/smoke-test.mjs",
+    "prepare": "npm run build"
   },
   "engines": {
     "node": ">=18"
