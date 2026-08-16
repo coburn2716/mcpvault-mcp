@@ -1,0 +1,45 @@
+{
+  "name": "mcpvault-mcp",
+  "version": "0.1.0",
+  "description": "Search and evaluate MCP servers from your AI agent. Quality grades, live verification status, install commands and client compatibility for 5,000+ MCP servers.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "mcpvault-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "smoke": "node scripts/smoke-test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcpvault",
+    "mcp-server",
+    "ai-tools"
+  ],
+  "author": "Henrik Aberg",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coburn2716/mcpvault-mcp"
+  },
+  "homepage": "https://mcpvault.io",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/node": "^22.0.0"
+  }
+}
