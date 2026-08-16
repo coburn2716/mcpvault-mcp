@@ -112,11 +112,11 @@ async function runSmoke() {
       console.log(`        - ${t.name}`);
     }
 
-    if (tools.length !== 3) {
-      throw new Error(`Expected 3 tools, got ${tools.length}`);
+    if (tools.length !== 4) {
+      throw new Error(`Expected 4 tools, got ${tools.length}`);
     }
     const toolNames = tools.map((t) => t.name);
-    for (const expected of ["search_mcp_servers", "get_mcp_server", "get_install_command"]) {
+    for (const expected of ["search_mcp_servers", "get_mcp_server", "get_install_command", "submit_mcp_server"]) {
       if (!toolNames.includes(expected)) throw new Error(`Missing tool: ${expected}`);
     }
 

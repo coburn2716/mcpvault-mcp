@@ -14,6 +14,7 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 
 const API_BASE = "https://mcpvault.io/api/servers";
+const SUBMIT_URL = "https://mcpvault.io/api/mcp-submit";
 const LISTING_BASE = "https://mcpvault.io/servers";
 
 // ── API types ────────────────────────────────────────────────────────────────
@@ -58,7 +59,7 @@ async function fetchServers(params: Record<string, string | number>): Promise<Ap
   let res: Response;
   try {
     res = await fetch(url.toString(), {
-      headers: { "User-Agent": "mcpvault-mcp/0.1.0" },
+      headers: { "User-Agent": "mcpvault-mcp/0.2.0" },
     });
   } catch (err) {
     throw new McpError(
@@ -194,12 +195,27 @@ const TOOLS = [
       required: ["slug"],
     },
   },
+  {
+    name: "submit_mcp_server",
+    description:
+      "Submit a GitHub repository to the MCPVault directory as a new MCP server listing. Use this when you find an MCP server on GitHub that is not yet in MCPVault.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        repo_url: {
+          type: "string",
+          description: "Full GitHub repository URL, e.g. https://github.com/owner/repo",
+        },
+      },
+      required: ["repo_url"],
+    },
+  },
 ] as const;
 
 // ── Server setup ─────────────────────────────────────────────────────────────
 
 const server = new Server(
-  { name: "mcpvault-mcp", version: "0.1.0" },
+  { name: "mcpvault-mcp", version: "0.2.0" },
   { capabilities: { tools: {} } }
 );
 
@@ -306,6 +322,91 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         {
           type: "text",
           text: `Install command for ${s.name}:\n\n  ${s.installCommand}\n\nListing: ${listing}`,
+        },
+      ],
+    };
+  }
+
+  // ── submit_mcp_server ──────────────────────────────────────────────────────
+  if (name === "submit_mcp_server") {
+    const repoUrl = (args?.repo_url as string | undefined)?.trim();
+    if (!repoUrl) {
+      throw new McpError(ErrorCode.InvalidParams, "repo_url is required.");
+    }
+
+    let res: Response;
+    try {
+      res = await fetch(SUBMIT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "User-Agent": "mcpvault-mcp/0.2.0",
+        },
+        body: JSON.stringify({ repo_url: repoUrl }),
+      });
+    } catch (err) {
+      throw new McpError(
+        ErrorCode.InternalError,
+        `Network error reaching MCPVault: ${err instanceof Error ? err.message : String(err)}`
+      );
+    }
+
+    let data: Record<string, unknown>;
+    try {
+      data = (await res.json()) as Record<string, unknown>;
+    } catch {
+      throw new McpError(ErrorCode.InternalError, `MCPVault returned HTTP ${res.status} with no parseable body.`);
+    }
+
+    if (res.status === 201) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Submitted. The server has been added to MCPVault.\nListing: ${data.listing_url}\nThe owner can claim it at https://mcpvault.io/claim.`,
+          },
+        ],
+      };
+    }
+
+    if (res.status === 200 && data.reason === "already_listed") {
+      return {
+        content: [
+          {
+            type: "text",
+            text: `This server is already listed in MCPVault.\nListing: ${data.listing_url}`,
+          },
+        ],
+      };
+    }
+
+    if (res.status === 422) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: `This repository does not appear to be an MCP server. MCPVault requires the repo name, description, or topics to mention "mcp" or "model context protocol". Check the URL and try again.`,
+          },
+        ],
+      };
+    }
+
+    if (res.status === 429) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: `MCPVault submission limit reached for today. Try again tomorrow.`,
+          },
+        ],
+      };
+    }
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: `MCPVault returned an unexpected response (HTTP ${res.status}). Try again shortly or visit https://mcpvault.io.`,
         },
       ],
     };

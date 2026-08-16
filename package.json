@@ -1,6 +1,6 @@
 {
   "name": "mcpvault-mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Search and evaluate MCP servers from your AI agent. Quality grades, live verification status, install commands and client compatibility for 5,000+ MCP servers.",
   "type": "module",
   "main": "dist/index.js",

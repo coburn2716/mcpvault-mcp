@@ -1,6 +1,6 @@
 # MCPVault MCP Server
 
-Search and evaluate MCP servers from your AI agent. Quality grades, live verification status, install commands and client compatibility for 5,000+ MCP servers.
+Search, evaluate, and submit MCP servers from your AI agent. Quality grades, live verification status, install commands and client compatibility for 5,000+ MCP servers.
 
 [![MCPVault](https://mcpvault.io/badge/mcpvault-mcp.svg)](https://mcpvault.io/servers/mcpvault-mcp)
 
@@ -120,6 +120,31 @@ Returns the recorded install command and a link to the listing page. If no insta
 
 - "How do I install the github MCP server?"
 - "What is the install command for filesystem-mcp?"
+
+---
+
+### submit_mcp_server
+
+Submit a GitHub repository to MCPVault as a new MCP server listing. If you find an MCP server on GitHub that is not yet in MCPVault, use this tool to add it. The repository is validated against the MCPVault plausibility gate (the repo name, description, or topics must mention "mcp" or "model context protocol"). Rate limited to 5 submissions per client per day.
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| repo_url | string | Yes | Full GitHub repository URL, e.g. `https://github.com/owner/repo` |
+
+**Responses:**
+
+- Submitted successfully: returns the listing URL and a note that the owner can claim it at mcpvault.io/claim.
+- Already listed: returns the existing listing URL.
+- Not an MCP server: explains what the plausibility gate checks.
+- Rate limited: try again tomorrow.
+
+**Example prompts:**
+
+- "If you find an MCP server on GitHub that is not in MCPVault, submit it"
+- "Submit https://github.com/owner/my-mcp-server to MCPVault"
+- "Add this MCP server to MCPVault: https://github.com/owner/repo"
 
 ---
 
