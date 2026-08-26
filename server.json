@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.coburn2716/mcpvault",
+  "title": "MCPVault",
+  "description": "Search and inspect evidence-labelled MCP server records, install data, compatibility, and live verification status.",
+  "repository": {
+    "url": "https://github.com/coburn2716/mcpvault-mcp",
+    "source": "github"
+  },
+  "version": "0.2.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "mcpvault-mcp",
+      "version": "0.2.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

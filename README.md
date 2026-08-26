@@ -1,6 +1,6 @@
 # MCPVault MCP Server
 
-Search, evaluate, and submit MCP servers from your AI agent. Quality grades, live verification status, install commands and client compatibility for 5,000+ MCP servers.
+Search, inspect, and submit MCP servers from your AI agent. MCPVault exposes more than 18,000 records with evidence-labelled grades, freshness, verification, install, and compatibility data.
 
 [![MCPVault](https://mcpvault.io/badge/mcpvault-mcp.svg)](https://mcpvault.io/servers/mcpvault-mcp)
 
@@ -148,9 +148,25 @@ Submit a GitHub repository to MCPVault as a new MCP server listing. If you find 
 
 ---
 
+## Evidence and limitations
+
+- `verified` means MCPVault completed a live MCP handshake at the recorded time. It is not a security audit.
+- Grades summarize repository activity, maintenance, documentation, and reliability signals. They are not sold and do not guarantee safety.
+- `stale` means the maintainer has not claimed the imported record. It does not mean the software is abandoned.
+- Install commands and compatibility data come from public metadata and maintainer edits. Review the linked repository before running third-party code.
+- This server sends search and submission requests to `https://mcpvault.io`. It does not read local files, credentials, prompts, or client conversations.
+
+## Support and security
+
+For usage help, open an issue or contact [hello@mcpvault.io](mailto:hello@mcpvault.io). For a security concern, do not include secrets in a public issue. Email the same address with `SECURITY` in the subject.
+
+See [CHANGELOG.md](./CHANGELOG.md) for release notes.
+
 ## About MCPVault
 
-MCPVault is a curated directory of 5,000+ MCP servers with quality grades and live verification. Every server is graded A through F based on activity, maintenance, and reliability signals. Stale servers are flagged; claimed and verified servers are actively maintained.
+MCPVault is an independent directory of more than 18,000 MCP server records. Public evidence is labelled by source and timestamp. Claimed records are maintainer-controlled; verified records have passed a live MCP handshake.
+
+<!-- mcp-name: io.github.coburn2716/mcpvault -->
 
 Browse at [mcpvault.io](https://mcpvault.io).
 

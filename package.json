@@ -1,7 +1,8 @@
 {
   "name": "mcpvault-mcp",
   "version": "0.2.0",
-  "description": "Search and evaluate MCP servers from your AI agent. Quality grades, live verification status, install commands and client compatibility for 5,000+ MCP servers.",
+  "description": "Search more than 18,000 MCP server records with evidence-labelled grades, freshness, verification, install, and compatibility data.",
+  "mcpName": "io.github.coburn2716/mcpvault",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -10,6 +11,7 @@
   "files": [
     "dist",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE"
   ],
   "scripts": {
