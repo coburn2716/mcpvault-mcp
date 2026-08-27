@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+- Added official MCP Registry ownership metadata.
+- Updated the public dataset description to more than 18,000 records.
+- Documented evidence boundaries, privacy behavior, support, and security limitations.
+
 ## 0.2.0
 
 - Added rate-limited server submission.

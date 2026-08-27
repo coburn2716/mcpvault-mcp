@@ -1,6 +1,6 @@
 {
   "name": "mcpvault-mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Search more than 18,000 MCP server records with evidence-labelled grades, freshness, verification, install, and compatibility data.",
   "mcpName": "io.github.coburn2716/mcpvault",
   "type": "module",
@@ -35,7 +35,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/coburn2716/mcpvault-mcp"
+    "url": "git+https://github.com/coburn2716/mcpvault-mcp.git"
   },
   "homepage": "https://mcpvault.io",
   "dependencies": {
