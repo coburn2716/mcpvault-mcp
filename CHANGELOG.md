@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+
+- Republish the package ownership metadata required by the official MCP Registry.
+
 ## 0.2.1
 
 - Added official MCP Registry ownership metadata.

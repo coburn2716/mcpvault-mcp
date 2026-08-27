@@ -59,7 +59,7 @@ async function fetchServers(params: Record<string, string | number>): Promise<Ap
   let res: Response;
   try {
     res = await fetch(url.toString(), {
-      headers: { "User-Agent": "mcpvault-mcp/0.2.1" },
+      headers: { "User-Agent": "mcpvault-mcp/0.2.2" },
     });
   } catch (err) {
     throw new McpError(
@@ -215,7 +215,7 @@ const TOOLS = [
 // ── Server setup ─────────────────────────────────────────────────────────────
 
 const server = new Server(
-  { name: "mcpvault-mcp", version: "0.2.1" },
+  { name: "mcpvault-mcp", version: "0.2.2" },
   { capabilities: { tools: {} } }
 );
 
@@ -340,7 +340,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "User-Agent": "mcpvault-mcp/0.2.1",
+          "User-Agent": "mcpvault-mcp/0.2.2",
         },
         body: JSON.stringify({ repo_url: repoUrl }),
       });

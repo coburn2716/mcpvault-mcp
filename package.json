@@ -1,6 +1,6 @@
 {
   "name": "mcpvault-mcp",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Search more than 18,000 MCP server records with evidence-labelled grades, freshness, verification, install, and compatibility data.",
   "mcpName": "io.github.coburn2716/mcpvault",
   "type": "module",
